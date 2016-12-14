@@ -1,0 +1,5 @@
+babel_cache
+dist_server
+node_modules
+static/js
+.DS_Store

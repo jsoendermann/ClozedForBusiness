@@ -2,16 +2,14 @@
   "name": "clozed-for-business",
   "private": true,
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Create cloze deletions for your Anki deck while reading Chinese texts",
   "scripts": {
     "start": "node lib/index.js",
     "build": "npm run build-server && npm run build-webapp",
     "build-server": "babel src/server -d lib",
     "build-webapp": "webpack"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Jan Soendermann",
   "dependencies": {
     "antd": "^2.5.2",
     "axios": "^0.15.3",

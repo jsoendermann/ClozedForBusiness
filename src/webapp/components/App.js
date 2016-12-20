@@ -98,7 +98,7 @@ class App extends Component {
       characters[characterIndex] = { ...characters[characterIndex], hasBeenClozed: true };
 
       const text = characters.map(c => c.char).join('');
-      const { truncatedText, truncatedIndex } = truncateAroundIndex(text, characterIndex, '…');
+      const { truncatedText, truncatedIndex } = truncateAroundIndex({ text, index: characterIndex, cutString: '…' });
 
       this.setState({
         code: '',

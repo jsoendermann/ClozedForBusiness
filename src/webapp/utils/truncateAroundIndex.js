@@ -1,8 +1,8 @@
-export default function truncateAroundIndex(text, index, cutString) {
+export default function truncateAroundIndex({ text, index, leaveBefore = 60, leaveAfter = 60, cutString = '' }) {
   const trimmedText = text.trim();
 
-  let start = Math.max(0, index - 60);
-  let end = Math.min(trimmedText.length - 1, index + 60);
+  let start = Math.max(0, index - leaveBefore);
+  let end = Math.min(trimmedText.length - 1, index + leaveAfter);
 
   while (/\s/.test(trimmedText[start])) start += 1;
   while (/\s/.test(trimmedText[end])) end -= 1;

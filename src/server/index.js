@@ -10,7 +10,7 @@ const PINYIN_COLORS = {
 };
 
 const makeTsvSafe = str => str.replace(/\n/g, '<br />').replace(/\t/g, '    ');
-const wordForRecordAndCharset = (record, charset) => (charset === 'simplified' ? record.simp : record.trad);
+const wordForRecordAndCharset = ({ simp, trad }, charset) => (charset === 'simplified' ? simp : trad);
 const tsv = (strings, ...values) => {
   let result = strings[0];
   for (let i = 0; i < values.length; i += 1) {
@@ -20,27 +20,27 @@ const tsv = (strings, ...values) => {
   return result;
 };
 
-const recordsToHtml = records => records.map((record) => {
-  let pinyin = record.pinyin;
-  pinyin = pinyin.replace(/5/g, '');
-  pinyin = pinyinizer.pinyinize(pinyin);
+const definitionsToHtml = records => records.map(({ pinyin, english }) => {
+  const pinyinWithDiacritics = pinyinizer.pinyinize(pinyin.replace(/5/g, ''));
 
-  const originalPinyinSyllables = record.pinyin.split(' ');
-  pinyin = pinyin.split(' ').map((w, i) => {
+  const originalPinyinSyllables = pinyin.split(' ');
+  const pinyinWithColorsAndDiacritics = pinyinWithDiacritics.split(' ').map((w, i) => {
     const org = originalPinyinSyllables[i];
     const color = PINYIN_COLORS[org[org.length - 1]] || 'black';
 
     return `<span style="color: ${color};">${w}</span>`;
   }).join(' ');
 
-  let english = record.english;
-  english = english.slice(1, english.length - 1);
-  english = english.split('/').map(s => `•&nbsp;${s}`).join('<br />');
+  const definitions = english
+    .slice(1, english.length - 1)
+    .split('/')
+    .map(s => `•&nbsp;${s}`)
+    .join('<br />');
 
-  return `${pinyin}<br />${english}`;
+  return `${pinyinWithColorsAndDiacritics}<br />${definitions}`;
 }).join('<br /><br />');
 
-const cardToTsvLine = ({ title, text, index, records, charset }) => {
+const cardToTsvRow = ({ title, text, index, records, charset }) => {
   const front =
     `${text.slice(0, index)
     }<span style="color: ${CLOZE_COLOR};">％</span>${
@@ -52,7 +52,7 @@ const cardToTsvLine = ({ title, text, index, records, charset }) => {
     text.slice(index + 1)}`;
 
   const clozedWord = records.length > 0 ? wordForRecordAndCharset(records[0], charset) : '';
-  const recordsHtml = recordsToHtml(records);
+  const recordsHtml = definitionsToHtml(records);
 
   return tsv`${front}\t${back}\t${title}\t${clozedWord}\t${recordsHtml}`;
 };
@@ -64,7 +64,6 @@ const { json } = require('body-parser');
 const app = express();
 
 app.use(express.static(path.join(__dirname, '..', 'static')));
-
 app.use(json({ limit: '50mb' }));
 
 CedictTools.initialize();
@@ -83,7 +82,7 @@ app.post('/generate-cards', (req, res) => {
         records,
       };
     })
-    .map(cardToTsvLine)
+    .map(cardToTsvRow)
     .join('\n');
 
   res.send(tsvString);

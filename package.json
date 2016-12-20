@@ -5,9 +5,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist_server/index.js",
-    "build-server": "babel src_server -d dist_server",
-    "build-website": "webpack"
+    "start": "node lib/index.js",
+    "build": "npm run build-server && npm run build-webapp",
+    "build-server": "babel src/server -d lib",
+    "build-webapp": "webpack"
   },
   "author": "",
   "license": "ISC",

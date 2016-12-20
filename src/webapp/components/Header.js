@@ -20,7 +20,7 @@ const Header = ({
           onChange={e => onTitleChange(e.target.value)}
           className="title"
           type="textarea"
-          placeholder="Title (can be empty)"
+          placeholder="Title (optional)"
         />
       </div>
       <div className="text-container">

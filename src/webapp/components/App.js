@@ -143,6 +143,15 @@ class App extends Component {
       }
     });
 
+    const instructions = (
+      <ol className="instructions">
+        <li>Find something interesting to read online and copy it into the text box above.</li>
+        <li>To create a card with a particular chararcter clozed, enter its code into the "Code" field.</li>
+        <li>Repeat the previous two steps as many times as you like.</li>
+        <li>Click on the "Generate" button and follow the instructions to add your new cards to Anki.</li>
+      </ol>
+    );
+
     return (
       <div className="App">
         <Header
@@ -164,7 +173,12 @@ class App extends Component {
         />
 
         <section className="chinese-text">
-          {charElements}
+          {
+            charElements.length > 0 ?
+              charElements
+            :
+              instructions
+          }
         </section>
       </div>
     );

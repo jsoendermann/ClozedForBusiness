@@ -1,4 +1,4 @@
-## Install
+## Try it out!
 
 [Install Docker](https://www.docker.com/products/overview), then run
 

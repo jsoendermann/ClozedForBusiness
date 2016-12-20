@@ -1,0 +1,10 @@
+.character {
+  rt {
+    color: #bbb;
+    font-size: 50%;
+    transition: color 0.3s;
+  }
+  rt.invisible {
+    color: white;
+  }
+}

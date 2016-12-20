@@ -1,9 +1,11 @@
 {
-  "name": "mcds",
+  "name": "clozed-for-business",
+  "private": true,
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node dist_server/index.js",
     "build-server": "babel src_server -d dist_server",
     "build-website": "webpack"
   },
@@ -11,10 +13,13 @@
   "license": "ISC",
   "dependencies": {
     "antd": "^2.5.2",
+    "axios": "^0.15.3",
     "body-parser": "^1.15.2",
+    "cartesian-product": "^2.1.2",
+    "cedict-tools": "^2.0.1",
     "express": "^4.14.0",
     "lodash": "^4.17.2",
-    "mongoose": "^4.7.2",
+    "pinyinizer": "^0.1.2",
     "react": "^15.4.1",
     "react-dom": "^15.4.1"
   },
@@ -23,6 +28,7 @@
     "babel-cli": "^6.18.0",
     "babel-core": "^6.20.0",
     "babel-loader": "^6.2.9",
+    "babel-plugin-import": "^1.1.0",
     "babel-plugin-transform-async-to-generator": "^6.16.0",
     "babel-plugin-transform-object-assign": "^6.8.0",
     "babel-plugin-transform-object-rest-spread": "^6.20.2",
@@ -30,6 +36,11 @@
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "css-loader": "^0.26.1",
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.8.0",
     "http-server": "^0.9.0",
     "node-sass": "^4.0.0",
     "postcss-loader": "^1.2.1",

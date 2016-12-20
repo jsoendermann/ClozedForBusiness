@@ -1,5 +1,6 @@
 babel_cache
-dist_server
+lib
 node_modules
 static/js
 .DS_Store
+.vscode

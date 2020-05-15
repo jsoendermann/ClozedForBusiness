@@ -1,12 +1,11 @@
-FROM node:latest
+FROM node:13.14.0-alpine3.10
 
-RUN curl -o- -L https://yarnpkg.com/install.sh | bash
+WORKDIR /app
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-COPY . /usr/src/app
+COPY package*.json ./
+RUN npm ci
 
-RUN $HOME/.yarn/bin/yarn install --pure-lockfile
+COPY . .
 RUN npm run build
 
 EXPOSE 8730

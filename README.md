@@ -4,12 +4,7 @@
 
 ```
 docker build --tag clozedforbusiness github.com/jsoendermann/ClozedForBusiness
-docker run --detach --publish 8730:8730 --name clozedforbusiness clozedforbusiness
-open http://localhost:8730
+docker run --rm --publish 8730:8730 --name clozedforbusiness clozedforbusiness
 ```
 
-and to stop
-
-```
-docker stop clozedforbusiness
-```
+and once the container is running, open http://localhost:8730

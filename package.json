@@ -17,7 +17,7 @@
     "cartesian-product": "^2.1.2",
     "cedict-tools": "^2.0.1",
     "express": "^4.14.0",
-    "lodash": "^4.17.2",
+    "lodash": "^4.17.21",
     "pinyinizer": "^0.1.2",
     "react": "^15.4.1",
     "react-dom": "^15.4.1"
